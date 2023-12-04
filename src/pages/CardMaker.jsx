@@ -11,7 +11,7 @@ function CardMaker() {
   const [mana, setMana] = useState(0);
 
   document.addEventListener("DOMContentLoaded", function () {
-    if (sessionStorage.getItem("user") === null) {
+    if (localStorage.getItem("user") === null) {
       window.location.replace("/");
     }
   });
@@ -46,7 +46,7 @@ function CardMaker() {
     const attack = document.getElementById("attack")?.value;
     const health = document.getElementById("health")?.value;
     const cost = mana;
-    const createdBy = JSON.parse(sessionStorage.getItem("user"))?.name;
+    const createdBy = JSON.parse(localStorage.getItem("user"))?.name;
     const image_url = image;
 
     if (!name || !desc || !attack || !health || !createdBy) {

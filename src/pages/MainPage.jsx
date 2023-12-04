@@ -17,10 +17,10 @@ import FindGames from "../components/MainPage/FindGames.jsx";
 function MainPage() {
   const [games, setGames] = useState([]);
   const [findGames, setFindGames] = useState([]); // TODO: Implement findGames
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem("user")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
   useEffect(() => {
-    sessionStorage.removeItem("gameId"); // Reset game session storage (if any game is stored)
+    localStorage.removeItem("gameId"); // Reset game session storage (if any game is stored)
     if (user === undefined || user === null) {
       window.location.replace("/"); // If user is not logged in, redirect to login page
       return;
@@ -77,7 +77,7 @@ function MainPage() {
     let newUser = { ...user, [name]: value };
     setUser(newUser);
     updateUserInfo(newUser);
-    sessionStorage.setItem("user", JSON.stringify(newUser));
+    localStorage.setItem("user", JSON.stringify(newUser));
   }
 
   async function loadFindGames() {
@@ -91,7 +91,7 @@ function MainPage() {
   }
 
   function joinGame(gameId) {
-    sessionStorage.setItem("gameId", gameId);
+    localStorage.setItem("gameId", gameId);
     window.location.replace("/game");
   }
 
@@ -103,7 +103,7 @@ function MainPage() {
       game.status = "NOT_STARTED";
       await updateGame(game);
       setGames([...games, game]);
-      sessionStorage.setItem("gameId", gameId);
+      localStorage.setItem("gameId", gameId);
       window.location.replace("/game");
     }
   }

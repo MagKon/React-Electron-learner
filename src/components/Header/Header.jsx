@@ -4,13 +4,13 @@ import ThemeIcon from "../Theme changer/ThemeIcon";
 import NavItem from "./NavItem";
 
 function Header() {
-  var user = sessionStorage.getItem("user");
+  var user = localStorage.getItem("user");
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg navbar-${sessionStorage.getItem(
+        className={`navbar navbar-expand-lg navbar-${localStorage.getItem(
           "theme"
-        )} bg-${sessionStorage.getItem("theme")}`}
+        )} bg-${localStorage.getItem("theme")}`}
         style={{ display: "block", position: "absolute", top: 1, left: 1 }}
       >
         <button
@@ -33,7 +33,7 @@ function Header() {
               link={"/"}
               onClick={() => {
                 if (user) {
-                  sessionStorage.removeItem("user");
+                  localStorage.removeItem("user");
                 }
               }}
             >

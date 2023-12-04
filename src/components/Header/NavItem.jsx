@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function NavItem({ children, link, onClick }) {
   return (
     <li className="nav-item" onClick={onClick}>
-      <a className="nav-link" href={link}>
+      <Link className="nav-link" to={link}>
         {children}
-      </a>
+      </Link>
     </li>
   );
 }

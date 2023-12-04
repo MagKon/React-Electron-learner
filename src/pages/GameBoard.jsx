@@ -7,7 +7,7 @@ import CardGrid from "../components/Card/CardGrid.jsx";
 function GameBoard() {
   const [game, setGame] = useState();
   useEffect(() => {
-    let gameId = JSON.parse(sessionStorage.getItem("gameId"));
+    let gameId = JSON.parse(localStorage.getItem("gameId"));
     if (gameId === undefined || gameId === null) {
       window.location.replace("/"); // If user is not logged in, redirect to login page
       return;
@@ -47,16 +47,18 @@ function GameBoard() {
       // Add the card to the player's hand
       game.players[1].hand.push(randomCardOpponent);
     }
-    setGame(prevState => ({
+    setGame((prevState) => ({
       ...prevState,
       players: [
         {
           ...prevState.players[0],
-          hand: game.players[0].hand, mana: 10
+          hand: game.players[0].hand,
+          mana: 10,
         },
         {
           ...prevState.players[1],
-          hand: game.players[1].hand, mana: 10
+          hand: game.players[1].hand,
+          mana: 10,
         },
       ],
     }));
@@ -123,15 +125,15 @@ function GameBoard() {
   }
   //#endregion
 
-  
-
-
   return (
     <div className="container">
       <h1>Game Board</h1>
       <hr></hr>
       <div className="row md-4" style={{ marginBottom: "10%" }}>
-        <button className="btn btn-primary" onClick={initializePlayerHands}> Generate hand</button>
+        <button className="btn btn-primary" onClick={initializePlayerHands}>
+          {" "}
+          Generate hand
+        </button>
 
         <label>
           {game?.players[0].hand == undefined
@@ -144,15 +146,13 @@ function GameBoard() {
         </div>
       </div>
 
-      <div >
+      <div>
         <CardGrid
           cards={game?.players[0].hand}
           click={playCard}
           button_text={"send to field"}
         />
       </div>
-
-  
     </div>
   );
 }

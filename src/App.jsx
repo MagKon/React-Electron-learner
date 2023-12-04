@@ -13,21 +13,21 @@ function App() {
     .getElementsByTagName("body")[0]
     .setAttribute(
       "data-bs-theme",
-      sessionStorage.getItem("theme") || sessionStorage.setItem("theme", "dark")
+      localStorage.getItem("theme") || localStorage.setItem("theme", "dark")
     );
 
   return (
     <>
       <HashRouter>
+        <Header />
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/maker" element={<CardMaker />} />
-          <Route path="/mainpage" element={<MainPage />} />
-          <Route path="/game" element={<GameBoard />} />
-          <Route path="/game/:id" element={<GameBoard />} />
+          <Route path="/" Component={Login} />
+          <Route path="/maker" Component={CardMaker} />
+          <Route path="/mainpage" Component={MainPage} />
+          <Route path="/game" Component={GameBoard} />
+          <Route path="/game/:id" Component={GameBoard} />
         </Routes>
       </HashRouter>
-      <Header />
     </>
   );
 }

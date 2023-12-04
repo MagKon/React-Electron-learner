@@ -20,7 +20,7 @@ function Login() {
       return;
     }
 
-    sessionStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     window.location.replace("/mainpage");
   }
 
