@@ -1,38 +1,33 @@
-// import React from "react";
-
-// function App() {
-//   return (
-//     <div>
-//       <h1>Hello World</h1>
-//       <h2>It is {new Date().toLocaleTimeString()}.</h2>
-//     </div>
-//   );
-// }
-
-// export default App;
-
+import "./styles/App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import Header from "./components/Header";
-import "./App.css";
-import { HashRouter, Route, Routes } from "react-router-dom";
-import Books from "./pages/books";
-import Book from "./pages/Book";
-import AddBook from "./pages/AddBook";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import Login from "./pages/Login";
+import CardMaker from "./pages/CardMaker";
+import Header from "./components/Header/Header";
+import MainPage from "./pages/MainPage";
+import GameBoard from "./pages/GameBoard";
 
 function App() {
+  document
+    .getElementsByTagName("body")[0]
+    .setAttribute(
+      "data-bs-theme",
+      sessionStorage.getItem("theme") || sessionStorage.setItem("theme", "dark")
+    );
+
   return (
     <>
       <HashRouter>
-        <Header />
         <Routes>
-          <Route path="/books" element={<Books />}>
-            <Route path=":id" element={<Book />} />
-            <Route path="addbook" element={<AddBook />} />
-          </Route>
-          <Route path="*" element={<h1>Page not found</h1>} />
+          <Route path="/" element={<Login />} />
+          <Route path="/maker" element={<CardMaker />} />
+          <Route path="/mainpage" element={<MainPage />} />
+          <Route path="/game" element={<GameBoard />} />
+          <Route path="/game/:id" element={<GameBoard />} />
         </Routes>
       </HashRouter>
+      <Header />
     </>
   );
 }
